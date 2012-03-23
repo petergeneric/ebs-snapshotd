@@ -1,0 +1,146 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<groupId>com.github.petergeneric.aws.elasticsnap</groupId>
+	<artifactId>snapshotd-parent</artifactId>
+	<packaging>pom</packaging>
+	<version>0.1-SNAPSHOT</version>
+	<name>EBS snapshotd parent</name>
+	<description>EBS snapshotd (Parent Package)</description>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	
+	
+	<repositories>
+        <repository>
+            <id>central</id>
+            <url>http://repo1.maven.org/maven2</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+ </repositories>
+	
+	
+	<scm>
+		<connection>scm:git:git@github.com:petergeneric/ebs-snapshotd.git</connection>
+		<developerConnection>scm:git:git@github.com:petergeneric/ebs-snapshotd.git</developerConnection>
+		<url>scm:git:git@github.com:petergeneric/ebs-snapshotd.git</url>
+	</scm>
+	
+	<modules>
+		<module>daemon</module>
+	</modules>
+	
+<!--
+TODO point at a personal repo
+	<distributionManagement>
+		<repository>
+			<id>personal-releases</id>
+			<name>personal-repo-releases</name>
+			<url>path-to-repo</url>
+		</repository>
+		<snapshotRepository>
+			<id>personal-repo-snapshots</id>
+			<name>personal-repo-snapshots</name>
+			<url>path-to-repo</url>
+		</snapshotRepository>
+	</distributionManagement>
+-->
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.amazonaws<groupId>
+				<artifactId>aws-java-sdk</artifactId>
+				<version>1.3.6</version>
+			</dependency>
+
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>1.2.16</version>
+			</dependency>
+<!--
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>2.5</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-jaxrs</artifactId>
+				<version>2.3.1.GA</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-jaxb-provider</artifactId>
+				<version>2.3.1.GA</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-jettison-provider</artifactId>
+				<version>2.3.1.GA</version>
+			</dependency>
+		</dependencies>
+-->
+	</dependencyManagement>
+	
+	
+	<build>
+		<plugins>
+			<!--
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>**/TestUtils.java</exclude>
+						<exclude>**/TestUtils$*.java</exclude>
+						<!-- anonymous inner classes -->
+						<exclude>**/TestUtils.*.java</exclude>
+						<!-- non-anonymous inner classes -->
+					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<preparationGoals>install</preparationGoals>
+					<tagNameFormat>ebs-snapshotd-@{project.version}</tagNameFormat>
+					<pushChanges>false</pushChanges>
+					<localCheckout>true</localCheckout>
+					<goals>deploy</goals>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

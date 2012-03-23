@@ -1,0 +1,8 @@
+bin/
+classes/
+build/
+target/
+.classpath
+.settings
+.project
+
