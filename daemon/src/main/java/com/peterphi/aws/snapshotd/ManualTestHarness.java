@@ -66,8 +66,10 @@ public class ManualTestHarness
 
 		AmazonEC2Client ec2 = new AmazonEC2Client(auth);
 		AmazonSNSClient sns = new AmazonSNSClient(auth);
-		ec2.setEndpoint("https://ec2." + region + ".amazonaws.com");
-		sns.setEndpoint("https://sns." + region + ".amazonaws.com");
+		
+		// N.B. HTTP endpoints important if using one-jar (TODO figure out why - I assume AWS ships CA certs in their jars and one-jar screws them up?)
+		ec2.setEndpoint("http://ec2." + region + ".amazonaws.com");
+		sns.setEndpoint("http://sns." + region + ".amazonaws.com");
 
 		final String profileName = properties.getProperty("profile.name", "default");
 		final long interval = Long.valueOf(properties.getProperty("profile.interval", "60000")); // create snapshots every minute
