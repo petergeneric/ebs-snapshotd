@@ -6,7 +6,7 @@ import com.peterphi.aws.snapshotd.type.DurableVolume;
 public interface NotificationService
 {
 	// structured notificationd
-	
+
 	public void discarded(DurableVolume volume, Snapshot snapshot);
 
 	public void created(DurableVolume volume, Snapshot snapshot);
