@@ -1,4 +1,4 @@
-package com.github.petergeneric.aws.elasticsnap.daemon.service.impl;
+package com.peterphi.aws.snapshotd.service.impl;
 
 import java.util.List;
 
@@ -7,13 +7,13 @@ import org.apache.log4j.Logger;
 
 import com.amazonaws.services.ec2.model.Snapshot;
 import com.amazonaws.services.ec2.model.Volume;
-import com.github.petergeneric.aws.elasticsnap.daemon.service.BackupProfileService;
-import com.github.petergeneric.aws.elasticsnap.daemon.service.CreateSnapshotService;
-import com.github.petergeneric.aws.elasticsnap.daemon.service.DiscardSnapshotService;
-import com.github.petergeneric.aws.elasticsnap.daemon.service.NotificationService;
-import com.github.petergeneric.aws.elasticsnap.daemon.service.VolumeActionService;
-import com.github.petergeneric.aws.elasticsnap.daemon.type.BackupProfile;
-import com.github.petergeneric.aws.elasticsnap.daemon.type.DurableVolume;
+import com.peterphi.aws.snapshotd.service.BackupProfileService;
+import com.peterphi.aws.snapshotd.service.CreateSnapshotService;
+import com.peterphi.aws.snapshotd.service.DiscardSnapshotService;
+import com.peterphi.aws.snapshotd.service.NotificationService;
+import com.peterphi.aws.snapshotd.service.VolumeActionService;
+import com.peterphi.aws.snapshotd.type.BackupProfile;
+import com.peterphi.aws.snapshotd.type.DurableVolume;
 
 /**
  * An implementation of the VolumeActionService which takes a single action (based on the BackupProfile)<br />

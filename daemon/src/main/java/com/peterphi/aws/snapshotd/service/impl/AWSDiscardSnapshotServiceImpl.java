@@ -1,12 +1,12 @@
-package com.github.petergeneric.aws.elasticsnap.daemon.service.impl;
+package com.peterphi.aws.snapshotd.service.impl;
 
 import org.apache.log4j.Logger;
 
 import com.amazonaws.services.ec2.AmazonEC2Client;
 import com.amazonaws.services.ec2.model.DeleteSnapshotRequest;
 import com.amazonaws.services.ec2.model.Snapshot;
-import com.github.petergeneric.aws.elasticsnap.daemon.service.DiscardSnapshotService;
-import com.github.petergeneric.aws.elasticsnap.daemon.type.DurableVolume;
+import com.peterphi.aws.snapshotd.service.DiscardSnapshotService;
+import com.peterphi.aws.snapshotd.type.DurableVolume;
 
 public class AWSDiscardSnapshotServiceImpl implements DiscardSnapshotService
 {

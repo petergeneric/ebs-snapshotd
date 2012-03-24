@@ -1,4 +1,4 @@
-package com.github.petergeneric.aws.elasticsnap.daemon.service.impl;
+package com.peterphi.aws.snapshotd.service.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,9 +14,9 @@ import com.amazonaws.services.ec2.model.DescribeSnapshotsRequest;
 import com.amazonaws.services.ec2.model.DescribeSnapshotsResult;
 import com.amazonaws.services.ec2.model.Snapshot;
 import com.amazonaws.services.ec2.model.Volume;
-import com.github.petergeneric.aws.elasticsnap.daemon.service.DurableVolumeDiscoveryService;
-import com.github.petergeneric.aws.elasticsnap.daemon.type.DurableVolume;
-import com.github.petergeneric.aws.elasticsnap.daemon.util.SnapshotAgeComparator;
+import com.peterphi.aws.snapshotd.service.DurableVolumeDiscoveryService;
+import com.peterphi.aws.snapshotd.type.DurableVolume;
+import com.peterphi.aws.snapshotd.util.SnapshotAgeComparator;
 
 public class AWSDurableVolumeDiscoveryServiceImpl implements DurableVolumeDiscoveryService
 {

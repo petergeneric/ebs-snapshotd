@@ -1,4 +1,4 @@
-package com.github.petergeneric.aws.elasticsnap.daemon.type;
+package com.peterphi.aws.snapshotd.type;
 
 /**
  * Describes a backup profile

@@ -1,4 +1,4 @@
-package com.github.petergeneric.aws.elasticsnap.daemon.service.impl;
+package com.peterphi.aws.snapshotd.service.impl;
 
 import java.util.Collections;
 import java.util.List;
@@ -15,9 +15,9 @@ import com.amazonaws.services.ec2.model.DeleteSnapshotRequest;
 import com.amazonaws.services.ec2.model.Snapshot;
 import com.amazonaws.services.ec2.model.Tag;
 import com.amazonaws.services.ec2.model.Volume;
-import com.github.petergeneric.aws.elasticsnap.daemon.service.CreateSnapshotService;
-import com.github.petergeneric.aws.elasticsnap.daemon.service.DiscardSnapshotService;
-import com.github.petergeneric.aws.elasticsnap.daemon.type.DurableVolume;
+import com.peterphi.aws.snapshotd.service.CreateSnapshotService;
+import com.peterphi.aws.snapshotd.service.DiscardSnapshotService;
+import com.peterphi.aws.snapshotd.type.DurableVolume;
 
 /**
  * A Naive CreateSnapshotService which requests a snapshot without communicating to anyone to pause IO on the disk<br />

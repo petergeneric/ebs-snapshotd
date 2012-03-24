@@ -1,10 +1,10 @@
-package com.github.petergeneric.aws.elasticsnap.daemon.type;
+package com.peterphi.aws.snapshotd.type;
 
 import java.util.*;
 
 import com.amazonaws.services.ec2.model.Snapshot;
 import com.amazonaws.services.ec2.model.Volume;
-import com.github.petergeneric.aws.elasticsnap.daemon.util.SnapshotAgeComparator;
+import com.peterphi.aws.snapshotd.util.SnapshotAgeComparator;
 
 public class DurableVolume
 {

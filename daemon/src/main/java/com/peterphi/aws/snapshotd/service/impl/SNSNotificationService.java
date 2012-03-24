@@ -1,4 +1,4 @@
-package com.github.petergeneric.aws.elasticsnap.daemon.service.impl;
+package com.peterphi.aws.snapshotd.service.impl;
 
 import org.apache.log4j.Logger;
 
@@ -7,9 +7,9 @@ import com.amazonaws.services.ec2.model.Snapshot;
 import com.amazonaws.services.sns.AmazonSNSClient;
 import com.amazonaws.services.sns.model.PublishRequest;
 import com.amazonaws.services.sns.model.PublishResult;
-import com.github.petergeneric.aws.elasticsnap.daemon.service.NotificationService;
-import com.github.petergeneric.aws.elasticsnap.daemon.service.impl.SNSNotificationService.NotifyLevel;
-import com.github.petergeneric.aws.elasticsnap.daemon.type.DurableVolume;
+import com.peterphi.aws.snapshotd.service.NotificationService;
+import com.peterphi.aws.snapshotd.service.impl.SNSNotificationService.NotifyLevel;
+import com.peterphi.aws.snapshotd.type.DurableVolume;
 
 /**
  * A simple SNS-based notifier

@@ -1,8 +1,8 @@
-package com.github.petergeneric.aws.elasticsnap.daemon.service.impl;
+package com.peterphi.aws.snapshotd.service.impl;
 
-import com.github.petergeneric.aws.elasticsnap.daemon.service.BackupProfileService;
-import com.github.petergeneric.aws.elasticsnap.daemon.type.BackupProfile;
-import com.github.petergeneric.aws.elasticsnap.daemon.type.DurableVolume;
+import com.peterphi.aws.snapshotd.service.BackupProfileService;
+import com.peterphi.aws.snapshotd.type.BackupProfile;
+import com.peterphi.aws.snapshotd.type.DurableVolume;
 
 /**
  * A simple BackupProfileService implementation that takes a single BackupProfile to apply to all DurableVolumes

@@ -1,7 +1,7 @@
-package com.github.petergeneric.aws.elasticsnap.daemon.service;
+package com.peterphi.aws.snapshotd.service;
 
-import com.github.petergeneric.aws.elasticsnap.daemon.type.BackupProfile;
-import com.github.petergeneric.aws.elasticsnap.daemon.type.DurableVolume;
+import com.peterphi.aws.snapshotd.type.BackupProfile;
+import com.peterphi.aws.snapshotd.type.DurableVolume;
 
 public interface BackupProfileService
 {

@@ -1,10 +1,10 @@
-package com.github.petergeneric.aws.elasticsnap.daemon.service.impl;
+package com.peterphi.aws.snapshotd.service.impl;
 
 import org.apache.log4j.Logger;
 
 import com.amazonaws.services.ec2.model.Snapshot;
-import com.github.petergeneric.aws.elasticsnap.daemon.service.NotificationService;
-import com.github.petergeneric.aws.elasticsnap.daemon.type.DurableVolume;
+import com.peterphi.aws.snapshotd.service.NotificationService;
+import com.peterphi.aws.snapshotd.type.DurableVolume;
 
 public class LoggingNotificationService implements NotificationService
 {

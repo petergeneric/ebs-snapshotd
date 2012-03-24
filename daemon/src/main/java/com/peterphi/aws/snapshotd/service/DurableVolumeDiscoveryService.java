@@ -1,8 +1,8 @@
-package com.github.petergeneric.aws.elasticsnap.daemon.service;
+package com.peterphi.aws.snapshotd.service;
 
 import java.util.List;
 
-import com.github.petergeneric.aws.elasticsnap.daemon.type.DurableVolume;
+import com.peterphi.aws.snapshotd.type.DurableVolume;
 
 /**
  * Discovers DurableVolumes

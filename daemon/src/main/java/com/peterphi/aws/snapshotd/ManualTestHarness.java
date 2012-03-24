@@ -1,4 +1,4 @@
-package com.github.petergeneric.aws.elasticsnap.daemon;
+package com.peterphi.aws.snapshotd;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,17 +12,17 @@ import com.amazonaws.services.ec2.AmazonEC2Client;
 import com.amazonaws.services.ec2.model.DescribeSnapshotsRequest;
 import com.amazonaws.services.sns.AmazonSNSClient;
 import com.amazonaws.util.AwsHostNameUtils;
-import com.github.petergeneric.aws.elasticsnap.daemon.service.NotificationService;
-import com.github.petergeneric.aws.elasticsnap.daemon.service.impl.AWSDiscardSnapshotServiceImpl;
-import com.github.petergeneric.aws.elasticsnap.daemon.service.impl.AWSDurableVolumeDiscoveryServiceImpl;
-import com.github.petergeneric.aws.elasticsnap.daemon.service.impl.LoggingNotificationService;
-import com.github.petergeneric.aws.elasticsnap.daemon.service.impl.NaiveAWSCreateSnapshotService;
-import com.github.petergeneric.aws.elasticsnap.daemon.service.impl.SNSNotificationService;
-import com.github.petergeneric.aws.elasticsnap.daemon.service.impl.SingleProfileBackupProfileServiceImpl;
-import com.github.petergeneric.aws.elasticsnap.daemon.service.impl.VolumeActionServiceImpl;
-import com.github.petergeneric.aws.elasticsnap.daemon.service.impl.SNSNotificationService.NotifyLevel;
-import com.github.petergeneric.aws.elasticsnap.daemon.type.BackupProfile;
-import com.github.petergeneric.aws.elasticsnap.daemon.type.DurableVolume;
+import com.peterphi.aws.snapshotd.service.NotificationService;
+import com.peterphi.aws.snapshotd.service.impl.AWSDiscardSnapshotServiceImpl;
+import com.peterphi.aws.snapshotd.service.impl.AWSDurableVolumeDiscoveryServiceImpl;
+import com.peterphi.aws.snapshotd.service.impl.LoggingNotificationService;
+import com.peterphi.aws.snapshotd.service.impl.NaiveAWSCreateSnapshotService;
+import com.peterphi.aws.snapshotd.service.impl.SNSNotificationService;
+import com.peterphi.aws.snapshotd.service.impl.SingleProfileBackupProfileServiceImpl;
+import com.peterphi.aws.snapshotd.service.impl.VolumeActionServiceImpl;
+import com.peterphi.aws.snapshotd.service.impl.SNSNotificationService.NotifyLevel;
+import com.peterphi.aws.snapshotd.type.BackupProfile;
+import com.peterphi.aws.snapshotd.type.DurableVolume;
 
 /**
  * Manual test harness

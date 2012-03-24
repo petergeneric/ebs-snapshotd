@@ -1,4 +1,4 @@
-package com.github.petergeneric.aws.elasticsnap.daemon.util;
+package com.peterphi.aws.snapshotd.util;
 
 import java.util.Comparator;
 
