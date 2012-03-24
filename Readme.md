@@ -1,5 +1,9 @@
-EBS Snapshotd - Manages EBS snapshots in an automated fashion.
+EBS Snapshotd
+=============
+Manages EBS snapshots in an automated fashion.
 
+Principle
+---------
 Volumes/Snapshot associations are called *Durable Volumes*.
 EBS Snapshotd associates a profile with a Durable Volume,
 applying rules for:
@@ -16,3 +20,14 @@ as the following parameters for a Backup Profile:
 * The minimum backup snapshots to hold
 * The snapshot expire time (snapshots older than this may be deleted, as long as deleting them would not take us below the minimum snapshot count). May be set to 0 to disable automatic snapshot discard.
  
+Building
+--------
+This code is built with Maven (sorry - I hate maven too but it makes it easy to pull in the dependencies). To build, simply run
+```
+mvn clean install
+```
+
+To produce an eclipse project, run
+```
+mvn eclipse:clean eclipse:eclipse --downloadJavadocs=true --downloadSources=true
+```

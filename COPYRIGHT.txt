@@ -1,5 +1,3 @@
-See daemon/Readme.md for documentation
-
 Copyright (c) 2012 Peter Wright
 
 MIT License
