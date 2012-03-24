@@ -35,10 +35,16 @@ public class ManualTestHarness
 	public static void main(String[] args) throws Exception
 	{
 		final File awsconf = new File("conf/aws.properties");
+		final File backupconf = new File("conf/backup.properties");
 
 		if (!awsconf.exists())
 		{
 			throw new IllegalArgumentException("Expected conf/aws.properties with at least accessKey, secretAccessKey.");
+		}
+
+		if (!backupconf.exists())
+		{
+			throw new IllegalArgumentException("Expected " + backupconf);
 		}
 
 		// configure log4j
@@ -46,6 +52,7 @@ public class ManualTestHarness
 
 		Properties properties = new Properties();
 		properties.load(new FileInputStream(awsconf));
+		properties.load(new FileInputStream(backupconf));
 
 		final String region = properties.getProperty("region", "us-east-1");
 
@@ -65,7 +72,7 @@ public class ManualTestHarness
 		final String profileName = properties.getProperty("profile.name", "default");
 		final long interval = Long.valueOf(properties.getProperty("profile.interval", "60000")); // create snapshots every minute
 		final long expire = Long.valueOf(properties.getProperty("profile.expire", "120000")); // 2 minute expire
-		final int min = Integer.valueOf(properties.getProperty("profile.expire", "3")); // 3 backups
+		final int min = Integer.valueOf(properties.getProperty("profile.min", "3")); // 3 backups
 
 		BackupProfile profile = new BackupProfile(profileName, interval, expire, min);
 
