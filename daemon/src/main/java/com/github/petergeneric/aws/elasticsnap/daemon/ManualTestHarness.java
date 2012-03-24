@@ -10,13 +10,17 @@ import org.apache.log4j.PropertyConfigurator;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.ec2.AmazonEC2Client;
 import com.amazonaws.services.ec2.model.DescribeSnapshotsRequest;
+import com.amazonaws.services.sns.AmazonSNSClient;
 import com.amazonaws.util.AwsHostNameUtils;
+import com.github.petergeneric.aws.elasticsnap.daemon.service.NotificationService;
 import com.github.petergeneric.aws.elasticsnap.daemon.service.impl.AWSDiscardSnapshotServiceImpl;
 import com.github.petergeneric.aws.elasticsnap.daemon.service.impl.AWSDurableVolumeDiscoveryServiceImpl;
 import com.github.petergeneric.aws.elasticsnap.daemon.service.impl.LoggingNotificationService;
 import com.github.petergeneric.aws.elasticsnap.daemon.service.impl.NaiveAWSCreateSnapshotService;
+import com.github.petergeneric.aws.elasticsnap.daemon.service.impl.SNSNotificationService;
 import com.github.petergeneric.aws.elasticsnap.daemon.service.impl.SingleProfileBackupProfileServiceImpl;
 import com.github.petergeneric.aws.elasticsnap.daemon.service.impl.VolumeActionServiceImpl;
+import com.github.petergeneric.aws.elasticsnap.daemon.service.impl.SNSNotificationService.NotifyLevel;
 import com.github.petergeneric.aws.elasticsnap.daemon.type.BackupProfile;
 import com.github.petergeneric.aws.elasticsnap.daemon.type.DurableVolume;
 
@@ -51,7 +55,9 @@ public class ManualTestHarness
 		}
 
 		AmazonEC2Client ec2 = new AmazonEC2Client(auth);
+		AmazonSNSClient sns = new AmazonSNSClient(auth);
 		ec2.setEndpoint("https://ec2." + region + ".amazonaws.com");
+		sns.setEndpoint("https://sns." + region + ".amazonaws.com");
 
 		final String profileName = properties.getProperty("profile.name", "default");
 		final long interval = Long.valueOf(properties.getProperty("profile.interval", "60000")); // create snapshots every minute
@@ -60,16 +66,28 @@ public class ManualTestHarness
 
 		BackupProfile profile = new BackupProfile(profileName, interval, expire, min);
 
-		main(ec2, profile);
+		main(ec2, sns, profile, properties);
 	}
 
-	private static void main(AmazonEC2Client ec2, BackupProfile profile)
+	private static void main(AmazonEC2Client ec2, AmazonSNSClient sns, BackupProfile profile, Properties properties)
 	{
-		AWSDurableVolumeDiscoveryServiceImpl disc = new AWSDurableVolumeDiscoveryServiceImpl(ec2);
+		// If there is an sns.topic property, switch on SNS notifications
+		// Otherwise, log to log4j
+		final NotificationService notifier;
+		if (properties.getProperty("sns.topic") != null)
+		{
+			SNSNotificationService snsNotifier = new SNSNotificationService(sns);
+			snsNotifier.setTopic(properties.getProperty("sns.topic"));
 
-		List<DurableVolume> vols = disc.discover();
+			snsNotifier.setMinimumLevel(NotifyLevel.ENACTED); // by default, notify about snapshot create/discard and any detected errors
 
-		LoggingNotificationService notifier = new LoggingNotificationService(); // log to log4j
+			notifier = snsNotifier; // log to Amazon SNS
+		}
+		else
+		{
+			notifier = new LoggingNotificationService(); // log everything with log4j
+		}
+
 		AWSDiscardSnapshotServiceImpl discarder = new AWSDiscardSnapshotServiceImpl(ec2); // really discard (call setEnabled(false) to experiment
 		NaiveAWSCreateSnapshotService creater = new NaiveAWSCreateSnapshotService(ec2); // really snapshot
 		SingleProfileBackupProfileServiceImpl profiler = new SingleProfileBackupProfileServiceImpl();
@@ -79,6 +97,10 @@ public class ManualTestHarness
 		actioner.setCreateSnapshotService(creater);
 		actioner.setDiscardSnapshotService(discarder);
 		actioner.setNotificationService(notifier);
+
+		AWSDurableVolumeDiscoveryServiceImpl disc = new AWSDurableVolumeDiscoveryServiceImpl(ec2);
+
+		List<DurableVolume> vols = disc.discover();
 
 		for (DurableVolume vol : vols)
 		{
