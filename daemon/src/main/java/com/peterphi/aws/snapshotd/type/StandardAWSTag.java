@@ -1,5 +1,9 @@
 package com.peterphi.aws.snapshotd.type;
 
+import java.util.List;
+
+import com.amazonaws.services.ec2.model.Tag;
+
 /**
  * Describes the AWS Tags in use by this application
  */

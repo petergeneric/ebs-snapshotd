@@ -3,6 +3,7 @@ package com.peterphi.aws.snapshotd.service.impl;
 import com.peterphi.aws.snapshotd.service.BackupProfileService;
 import com.peterphi.aws.snapshotd.type.BackupProfile;
 import com.peterphi.aws.snapshotd.type.DurableVolume;
+import com.peterphi.aws.snapshotd.util.AWSTagHelper;
 
 /**
  * A simple BackupProfileService implementation that takes a single BackupProfile to apply to all DurableVolumes
