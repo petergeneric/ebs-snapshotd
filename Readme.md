@@ -40,15 +40,7 @@ cp daemon/conf/example-backup.properties ./conf/backup.properties
 
 backup.properties contains a definition of the region (us-east-1 by default) and the backup profile (named "default", taking a snapshot every 1 minute, keeping snapshots for 2 minutes (with a minimum of 3 snapshots kept)).
 
-Next, you should get your AWS access key and secret access key - I recommend generating a set of IAM credentials for this, snapshotd only needs to:
-
-* list EBS Volumes
-* list EBS Snapshots
-* Create EBS Snapshots
-* Set Tags on Snapshots
-* Discard EBS Snapshots
-
-Write your access key and secret access key to ```conf/aws.properties``` as:
+Next, you should get your AWS access key and secret access key (I recommend an IAM credential - see the suggested policy further down). Write your access key and secret access key to ```conf/aws.properties``` as:
 <code><pre>
 accessKey=abc
 secretAccessKey=abc
@@ -60,3 +52,44 @@ java -jar ebs-snapshotd.jar
 </pre></code>
 
 It will display any actions taken
+
+
+IAM Policy
+----------
+It is highly recommended that this service be given an IAM credential with a limited access policy. The following policy covers all the actions required:
+```json
+{
+  "Statement": [
+    {
+      "Sid": "Stmt1332601316876",
+      "Action": [
+        "ec2:CreateSnapshot",
+        "ec2:CreateTags",
+        "ec2:DeleteSnapshot",
+        "ec2:DescribeSnapshots",
+        "ec2:DescribeVolumes"
+      ],
+      "Effect": "Allow",
+      "Resource": [
+        "*"
+      ]
+    }
+  ]
+}
+{
+  "Statement": [
+    {
+      "Sid": "Stmt1332601471828",
+      "Action": [
+        "sns:Publish"
+      ],
+      "Effect": "Allow",
+      "Resource": [
+        "*"
+      ]
+    }
+  ]
+}
+```
+
+Note: the second Statement above is for Amazon SNS; if you do not wish to receive notifications when a snapshot is created/deleted then this policy is not required. You should be sure not to specify the sns.topic property in your backup.properties in this case.
