@@ -3,7 +3,7 @@ package com.peterphi.aws.snapshotd.service.impl;
 import org.apache.log4j.Logger;
 
 import com.amazonaws.services.ec2.model.Snapshot;
-import com.peterphi.aws.snapshotd.service.NotificationService;
+import com.peterphi.aws.snapshotd.service.iface.NotificationService;
 import com.peterphi.aws.snapshotd.type.DurableVolume;
 
 public class LoggingNotificationService implements NotificationService

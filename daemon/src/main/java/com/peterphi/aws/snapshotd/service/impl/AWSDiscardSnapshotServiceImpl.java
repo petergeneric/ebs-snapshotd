@@ -5,7 +5,7 @@ import org.apache.log4j.Logger;
 import com.amazonaws.services.ec2.AmazonEC2Client;
 import com.amazonaws.services.ec2.model.DeleteSnapshotRequest;
 import com.amazonaws.services.ec2.model.Snapshot;
-import com.peterphi.aws.snapshotd.service.DiscardSnapshotService;
+import com.peterphi.aws.snapshotd.service.iface.DiscardSnapshotService;
 import com.peterphi.aws.snapshotd.type.DurableVolume;
 
 public class AWSDiscardSnapshotServiceImpl implements DiscardSnapshotService

@@ -12,7 +12,7 @@ import com.amazonaws.services.ec2.AmazonEC2Client;
 import com.amazonaws.services.ec2.model.DescribeSnapshotsRequest;
 import com.amazonaws.services.sns.AmazonSNSClient;
 import com.amazonaws.util.AwsHostNameUtils;
-import com.peterphi.aws.snapshotd.service.NotificationService;
+import com.peterphi.aws.snapshotd.service.iface.NotificationService;
 import com.peterphi.aws.snapshotd.service.impl.AWSDiscardSnapshotServiceImpl;
 import com.peterphi.aws.snapshotd.service.impl.AWSDurableVolumeDiscoveryServiceImpl;
 import com.peterphi.aws.snapshotd.service.impl.LoggingNotificationService;

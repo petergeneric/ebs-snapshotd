@@ -7,7 +7,7 @@ import com.amazonaws.services.ec2.model.Snapshot;
 import com.amazonaws.services.sns.AmazonSNSClient;
 import com.amazonaws.services.sns.model.PublishRequest;
 import com.amazonaws.services.sns.model.PublishResult;
-import com.peterphi.aws.snapshotd.service.NotificationService;
+import com.peterphi.aws.snapshotd.service.iface.NotificationService;
 import com.peterphi.aws.snapshotd.service.impl.SNSNotificationService.NotifyLevel;
 import com.peterphi.aws.snapshotd.type.DurableVolume;
 

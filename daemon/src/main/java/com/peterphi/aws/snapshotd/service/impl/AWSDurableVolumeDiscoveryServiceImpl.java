@@ -14,7 +14,7 @@ import com.amazonaws.services.ec2.model.DescribeSnapshotsRequest;
 import com.amazonaws.services.ec2.model.DescribeSnapshotsResult;
 import com.amazonaws.services.ec2.model.Snapshot;
 import com.amazonaws.services.ec2.model.Volume;
-import com.peterphi.aws.snapshotd.service.DurableVolumeDiscoveryService;
+import com.peterphi.aws.snapshotd.service.iface.DurableVolumeDiscoveryService;
 import com.peterphi.aws.snapshotd.type.DurableVolume;
 import com.peterphi.aws.snapshotd.util.SnapshotAgeComparator;
 

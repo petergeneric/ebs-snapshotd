@@ -1,4 +1,4 @@
-package com.peterphi.aws.snapshotd.service;
+package com.peterphi.aws.snapshotd.service.iface;
 
 import com.amazonaws.services.ec2.model.Snapshot;
 import com.peterphi.aws.snapshotd.type.DurableVolume;

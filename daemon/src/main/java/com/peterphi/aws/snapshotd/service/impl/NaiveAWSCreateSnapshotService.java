@@ -15,8 +15,8 @@ import com.amazonaws.services.ec2.model.DeleteSnapshotRequest;
 import com.amazonaws.services.ec2.model.Snapshot;
 import com.amazonaws.services.ec2.model.Tag;
 import com.amazonaws.services.ec2.model.Volume;
-import com.peterphi.aws.snapshotd.service.CreateSnapshotService;
-import com.peterphi.aws.snapshotd.service.DiscardSnapshotService;
+import com.peterphi.aws.snapshotd.service.iface.CreateSnapshotService;
+import com.peterphi.aws.snapshotd.service.iface.DiscardSnapshotService;
 import com.peterphi.aws.snapshotd.type.DurableVolume;
 
 /**

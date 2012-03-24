@@ -1,4 +1,4 @@
-package com.peterphi.aws.snapshotd.service;
+package com.peterphi.aws.snapshotd.service.iface;
 
 import java.util.List;
 

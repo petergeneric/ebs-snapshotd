@@ -7,11 +7,11 @@ import org.apache.log4j.Logger;
 
 import com.amazonaws.services.ec2.model.Snapshot;
 import com.amazonaws.services.ec2.model.Volume;
-import com.peterphi.aws.snapshotd.service.BackupProfileService;
-import com.peterphi.aws.snapshotd.service.CreateSnapshotService;
-import com.peterphi.aws.snapshotd.service.DiscardSnapshotService;
-import com.peterphi.aws.snapshotd.service.NotificationService;
-import com.peterphi.aws.snapshotd.service.VolumeActionService;
+import com.peterphi.aws.snapshotd.service.iface.BackupProfileService;
+import com.peterphi.aws.snapshotd.service.iface.CreateSnapshotService;
+import com.peterphi.aws.snapshotd.service.iface.DiscardSnapshotService;
+import com.peterphi.aws.snapshotd.service.iface.NotificationService;
+import com.peterphi.aws.snapshotd.service.iface.VolumeActionService;
 import com.peterphi.aws.snapshotd.type.BackupProfile;
 import com.peterphi.aws.snapshotd.type.DurableVolume;
 

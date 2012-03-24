@@ -1,6 +1,6 @@
 package com.peterphi.aws.snapshotd.service.impl;
 
-import com.peterphi.aws.snapshotd.service.BackupProfileService;
+import com.peterphi.aws.snapshotd.service.iface.BackupProfileService;
 import com.peterphi.aws.snapshotd.type.BackupProfile;
 import com.peterphi.aws.snapshotd.type.DurableVolume;
 import com.peterphi.aws.snapshotd.util.AWSTagHelper;

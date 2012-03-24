@@ -10,8 +10,8 @@ import org.apache.log4j.Logger;
 
 import com.amazonaws.services.ec2.model.Snapshot;
 import com.amazonaws.services.ec2.model.Tag;
-import com.peterphi.aws.snapshotd.service.BackupProfileService;
-import com.peterphi.aws.snapshotd.service.NotificationService;
+import com.peterphi.aws.snapshotd.service.iface.BackupProfileService;
+import com.peterphi.aws.snapshotd.service.iface.NotificationService;
 import com.peterphi.aws.snapshotd.type.BackupProfile;
 import com.peterphi.aws.snapshotd.type.DurableVolume;
 import com.peterphi.aws.snapshotd.type.StandardAWSTag;
