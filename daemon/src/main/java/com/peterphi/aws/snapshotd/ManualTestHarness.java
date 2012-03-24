@@ -12,13 +12,16 @@ import com.amazonaws.services.ec2.AmazonEC2Client;
 import com.amazonaws.services.ec2.model.DescribeSnapshotsRequest;
 import com.amazonaws.services.sns.AmazonSNSClient;
 import com.amazonaws.util.AwsHostNameUtils;
+import com.peterphi.aws.snapshotd.service.iface.BackupService;
 import com.peterphi.aws.snapshotd.service.iface.NotificationService;
 import com.peterphi.aws.snapshotd.service.impl.AWSDiscardSnapshotServiceImpl;
 import com.peterphi.aws.snapshotd.service.impl.AWSDurableVolumeDiscoveryServiceImpl;
+import com.peterphi.aws.snapshotd.service.impl.BackupServiceImpl;
 import com.peterphi.aws.snapshotd.service.impl.LoggingNotificationService;
 import com.peterphi.aws.snapshotd.service.impl.NaiveAWSCreateSnapshotService;
 import com.peterphi.aws.snapshotd.service.impl.SNSNotificationService;
 import com.peterphi.aws.snapshotd.service.impl.SingleProfileBackupProfileServiceImpl;
+import com.peterphi.aws.snapshotd.service.impl.TagBasedBackupProfileServiceImpl;
 import com.peterphi.aws.snapshotd.service.impl.VolumeActionServiceImpl;
 import com.peterphi.aws.snapshotd.service.impl.SNSNotificationService.NotifyLevel;
 import com.peterphi.aws.snapshotd.type.BackupProfile;
@@ -90,22 +93,23 @@ public class ManualTestHarness
 
 		AWSDiscardSnapshotServiceImpl discarder = new AWSDiscardSnapshotServiceImpl(ec2); // really discard (call setEnabled(false) to experiment
 		NaiveAWSCreateSnapshotService creater = new NaiveAWSCreateSnapshotService(ec2); // really snapshot
-		SingleProfileBackupProfileServiceImpl profiler = new SingleProfileBackupProfileServiceImpl();
-		profiler.setProfile(profile);
+		TagBasedBackupProfileServiceImpl profiler = new TagBasedBackupProfileServiceImpl();
+		profiler.addProfile(profile);
 
 		VolumeActionServiceImpl actioner = new VolumeActionServiceImpl();
 		actioner.setCreateSnapshotService(creater);
 		actioner.setDiscardSnapshotService(discarder);
 		actioner.setNotificationService(notifier);
 
-		AWSDurableVolumeDiscoveryServiceImpl disc = new AWSDurableVolumeDiscoveryServiceImpl(ec2);
+		AWSDurableVolumeDiscoveryServiceImpl discoverer = new AWSDurableVolumeDiscoveryServiceImpl(ec2);
 
-		List<DurableVolume> vols = disc.discover();
+		BackupService backupService = new BackupServiceImpl();
+		backupService.setNotificationService(notifier);
+		backupService.setDurableVolumeDiscoveryService(discoverer);
+		backupService.setProfileService(profiler);
+		backupService.setVolumeActionService(actioner);
 
-		for (DurableVolume vol : vols)
-		{
-			profiler.assignProfile(vol);
-			actioner.handle(vol);
-		}
+		// Run an iteration of the backup service
+		backupService.backup();
 	}
 }
