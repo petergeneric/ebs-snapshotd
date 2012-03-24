@@ -32,16 +32,19 @@ public class VolumeActionServiceImpl implements VolumeActionService
 	{
 	}
 
+	@Override
 	public void setNotificationService(NotificationService notify)
 	{
 		this.notify = notify;
 	}
 
+	@Override
 	public void setCreateSnapshotService(CreateSnapshotService snapshotter)
 	{
 		this.snapshotter = snapshotter;
 	}
 
+	@Override
 	public void setDiscardSnapshotService(DiscardSnapshotService discarder)
 	{
 		this.discarder = discarder;

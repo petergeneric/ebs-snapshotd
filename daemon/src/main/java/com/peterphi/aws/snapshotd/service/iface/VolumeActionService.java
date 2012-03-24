@@ -8,4 +8,10 @@ import com.peterphi.aws.snapshotd.type.DurableVolume;
 public interface VolumeActionService
 {
 	public void handle(DurableVolume volume);
+
+	public void setNotificationService(NotificationService notify);
+
+	public void setCreateSnapshotService(CreateSnapshotService snapshotter);
+
+	public void setDiscardSnapshotService(DiscardSnapshotService discarder);
 }
