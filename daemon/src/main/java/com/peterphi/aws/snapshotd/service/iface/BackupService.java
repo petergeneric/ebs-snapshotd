@@ -10,11 +10,11 @@ public interface BackupService
 	 */
 	public void backup();
 
-	public void setDiscoverer(DurableVolumeDiscoveryService discoverer);
+	public void setDurableVolumeDiscoveryService(DurableVolumeDiscoveryService discoverer);
 
-	public void setProfiler(BackupProfileService profiler);
+	public void setProfileService(BackupProfileService profiler);
 
-	public void setActioner(VolumeActionService actioner);
+	public void setVolumeActionService(VolumeActionService actioner);
 
-	public void setNotifier(NotificationService notifier);
+	public void setNotificationService(NotificationService notifier);
 }

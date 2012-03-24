@@ -23,12 +23,13 @@ public class BackupServiceImpl implements BackupService
 	@Override
 	public void backup()
 	{
-		// Find all volumes we could process
+		// Find all volumes
 		final List<DurableVolume> volumes = discoverer.discover();
 
 		// TODO we could use a threadpool here to improve performance for larger datasets
 		for (DurableVolume volume : volumes)
 		{
+			// Process this volume (if necessary)
 			backup(volume);
 		}
 	}
@@ -82,27 +83,26 @@ public class BackupServiceImpl implements BackupService
 
 	// setters
 	@Override
-	public void setDiscoverer(DurableVolumeDiscoveryService discoverer)
+	public void setDurableVolumeDiscoveryService(DurableVolumeDiscoveryService discoverer)
 	{
 		this.discoverer = discoverer;
 	}
 
 	@Override
-	public void setProfiler(BackupProfileService profiler)
+	public void setProfileService(BackupProfileService profiler)
 	{
 		this.profiler = profiler;
 	}
 
 	@Override
-	public void setActioner(VolumeActionService actioner)
+	public void setVolumeActionService(VolumeActionService actioner)
 	{
 		this.actioner = actioner;
 	}
 
 	@Override
-	public void setNotifier(NotificationService notifier)
+	public void setNotificationService(NotificationService notifier)
 	{
 		this.notifier = notifier;
 	}
-
 }
