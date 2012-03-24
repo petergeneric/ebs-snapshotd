@@ -66,6 +66,32 @@ public class DurableVolume
 	@Override
 	public String toString()
 	{
-		return "DurableVolume [profile=" + profile + ", volume=" + volume + ", snapshots=" + snapshots + "]";
+		List<String> ids = new ArrayList<String>(snapshots.size() + 1);
+
+		ids.add(getVolumeId());
+
+		for (Snapshot snapshot : snapshots)
+		{
+			ids.add(snapshot.getSnapshotId());
+		}
+
+		return "DurableVolume [profile=" + profile + ", ids=" + ids + "]";
+	}
+
+	protected String getVolumeId()
+	{
+		if (volume != null)
+		{
+			return volume.getVolumeId();
+		}
+		else
+		{
+			for (Snapshot snapshot : snapshots)
+			{
+				return snapshot.getVolumeId();
+			}
+
+			throw new IllegalArgumentException("Could not retrieve volume id!");
+		}
 	}
 }

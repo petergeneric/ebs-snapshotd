@@ -56,4 +56,10 @@ public class BackupProfile
 	{
 		return minimum;
 	}
+
+	@Override
+	public String toString()
+	{
+		return "BackupProfile [name=" + name + "]";
+	}
 }
