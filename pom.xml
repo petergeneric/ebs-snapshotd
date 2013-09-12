@@ -10,7 +10,7 @@
 	<groupId>com.peterphi.aws.snapshotd</groupId>
 	<artifactId>snapshotd-parent</artifactId>
 	<packaging>pom</packaging>
-	<version>0.1</version>
+	<version>0.2-SNAPSHOT</version>
 	
 	<name>EBS snapshotd parent</name>
 	<description>EBS snapshotd (Parent Package)</description>
@@ -54,7 +54,7 @@
 		<connection>scm:git:git@github.com:petergeneric/ebs-snapshotd.git</connection>
 		<developerConnection>scm:git:git@github.com:petergeneric/ebs-snapshotd.git</developerConnection>
 		<url>scm:git:git@github.com:petergeneric/ebs-snapshotd.git</url>
-	  <tag>ebs-snapshotd-0.1</tag>
+	  <tag>HEAD</tag>
   </scm>
 	
 	<modules>
