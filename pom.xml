@@ -52,6 +52,7 @@
 	
 	<scm>
 		<connection>scm:git:git@github.com:petergeneric/ebs-snapshotd.git</connection>
+		<developerConnection>scm:git:git@github.com:petergeneric/ebs-snapshotd.git</developerConnection>
 		<url>scm:git:git@github.com:petergeneric/ebs-snapshotd.git</url>
 	</scm>
 	
