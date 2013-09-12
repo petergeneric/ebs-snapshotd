@@ -1,12 +1,35 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	
+	<parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>7</version>
+	</parent>
+	
 	<groupId>com.peterphi.aws.snapshotd</groupId>
 	<artifactId>snapshotd-parent</artifactId>
 	<packaging>pom</packaging>
 	<version>0.1-SNAPSHOT</version>
+	
 	<name>EBS snapshotd parent</name>
 	<description>EBS snapshotd (Parent Package)</description>
+	<url>https://github.com/petergeneric/ebs-snapshotd</url>
+	
+	<licenses>
+		<license>
+			<name>MIT</name>
+			<url>https://github.com/petergeneric/ebs-snapshotd/blob/master/COPYRIGHT.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	
+	<developers>
+		<developer>
+			<id>peter</id>
+			<name>Peter</name>
+		</developer>
+	</developers>
 	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -24,12 +47,11 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
- </repositories>
+	</repositories>
 	
 	
 	<scm>
 		<connection>scm:git:git@github.com:petergeneric/ebs-snapshotd.git</connection>
-		<developerConnection>scm:git:git@github.com:petergeneric/ebs-snapshotd.git</developerConnection>
 		<url>scm:git:git@github.com:petergeneric/ebs-snapshotd.git</url>
 	</scm>
 	
@@ -37,22 +59,6 @@
 		<module>daemon</module>
 	</modules>
 	
-<!--
-TODO point at a personal repo
-	<distributionManagement>
-		<repository>
-			<id>personal-releases</id>
-			<name>personal-repo-releases</name>
-			<url>path-to-repo</url>
-		</repository>
-		<snapshotRepository>
-			<id>personal-repo-snapshots</id>
-			<name>personal-repo-snapshots</name>
-			<url>path-to-repo</url>
-		</snapshotRepository>
-	</distributionManagement>
--->
-
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
